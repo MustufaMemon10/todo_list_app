@@ -21,9 +21,14 @@ class Task{
   DateTime dueDate;
 
   @HiveField(4)
+  DateTime creationDate;
+
+  @HiveField(5)
   bool isCompleted;
 
 
+
+
   
-  Task({required this.title, required this.description, required this.priority, required this.dueDate,  this.isCompleted = false});
+  Task({required this.title, required this.description, required this.priority, required this.dueDate, required this.creationDate, this.isCompleted = false});
 }
