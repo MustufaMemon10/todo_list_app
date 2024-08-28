@@ -103,14 +103,14 @@ Future<void> scheduleNotificationForTask(Task task) async {
 
   final dueDate = task.dueDate.toUtc();
   log('Original Due Date: $dueDate');
-  final
 
   final location = tz.getLocation('Asia/Kolkata');
-  final scheduledDate = tz.TZDateTime.from(dueDate, location);
+
+  final scheduledDate = tz.TZDateTime.from(dueDate, tz.local);
   log('Duedate utc : $dueDate');
   log('Scheduled Date (IST): $scheduledDate');
 
-  if (scheduledDate.isBefore(tz.TZDateTime.now(tz.local))) {
+  if (scheduledDate.isBefore(tz.TZDateTime.now(location))) {
     log('Scheduled date is in the past. Notification not scheduled.');
     return;
   }
@@ -119,7 +119,7 @@ Future<void> scheduleNotificationForTask(Task task) async {
     0,
     'Task Reminder',
     'Your Task ${task.title} is due!',
-    scheduledDate,
+    tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5)),
     const NotificationDetails(
       android: AndroidNotificationDetails(
         'task_channel_id2',
