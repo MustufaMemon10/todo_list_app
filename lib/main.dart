@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:todo_list_app/view/home_screen.dart';
+import 'package:todo_list_app/view/screens/home_screen.dart';
 import 'package:get/get.dart';
 
 import 'models/task.dart';

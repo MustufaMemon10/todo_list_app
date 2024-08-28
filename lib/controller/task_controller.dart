@@ -50,7 +50,7 @@ class TaskController extends GetxController{
 
   void sortTask(String criteria){
     if(criteria == 'priority'){
-      taskList.sort((a,b) => a.priority.compareTo(b.priority));
+      taskList.sort((a,b) => b.priority.compareTo(a.priority));
     }
     else if(criteria == 'dueDate'){
       taskList.sort((a,b)=> a.dueDate.compareTo(b.dueDate));

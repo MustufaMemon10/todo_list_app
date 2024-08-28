@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../controller/task_controller.dart';
+import '../../controller/task_controller.dart';
 
 class TaskSearch extends SearchDelegate {
   final TaskController taskController;

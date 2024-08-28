@@ -17,7 +17,8 @@ dependencies:
   hive_flutter:
   path_provider:
   flutter_local_notifications: 
-  intl: ^0.19.0
+  intl:
+  flutter_slidable:
 
 dev_dependencies:
   flutter_test:
