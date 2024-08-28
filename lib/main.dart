@@ -103,9 +103,10 @@ Future<void> scheduleNotificationForTask(Task task) async {
 
   final dueDate = task.dueDate.toUtc();
   log('Original Due Date: $dueDate');
+  final
 
   final location = tz.getLocation('Asia/Kolkata');
-  final scheduledDate = tz.TZDateTime.from(dueDate, tz.local);
+  final scheduledDate = tz.TZDateTime.from(dueDate, location);
   log('Duedate utc : $dueDate');
   log('Scheduled Date (IST): $scheduledDate');
 
