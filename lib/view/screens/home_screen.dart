@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
@@ -6,6 +5,7 @@ import 'package:todo_list_app/common/constants/app_colors.dart';
 import 'package:todo_list_app/common/widgets/sort_pop_up.dart';
 import 'package:todo_list_app/controller/task_controller.dart';
 import 'package:todo_list_app/view/screens/search_task.dart';
+import 'package:todo_list_app/view/screens/task_edit.dart';
 import 'package:todo_list_app/view/widgets/task_form.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -91,7 +91,7 @@ class HomeScreen extends StatelessWidget {
             height: MediaQuery.sizeOf(context).height,
             width: double.infinity,
             child: ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 padding: EdgeInsets.symmetric(
                     vertical: height * 0.01, horizontal: width * 0.02),
@@ -99,11 +99,11 @@ class HomeScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final task = controller.taskList[index];
                   return Slidable(
-                    endActionPane:  ActionPane(
+                    endActionPane: ActionPane(
                       motion: const StretchMotion(),
                       children: [
                         SlidableAction(
-                          onPressed: (context) => controller.removeTask(index) ,
+                          onPressed: (context) => controller.removeTask(index),
                           backgroundColor: Colors.red,
                           label: 'Delete',
                           icon: Icons.delete_outline,
@@ -111,50 +111,63 @@ class HomeScreen extends StatelessWidget {
                       ],
                     ),
                     child: ListTile(
-                      splashColor: Colors.yellow,
-                      shape: const StadiumBorder(),
-                      title: Text(
-                        task.title,
-                        style: TextStyle(
-                          decoration:
-                              task.isCompleted ? TextDecoration.lineThrough : null,
-                        ),
-                      ),
-                      subtitle: Text(
-                        task.description,
-                        style: TextStyle(
-                          decoration:
-                              task.isCompleted ? TextDecoration.lineThrough : null,
-                        ),
-                      ),
-                      trailing: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Container(
-                            height: height * 0.04,
-                            width: width * 0.04,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: task.priority == 3
-                                  ? Colors.green
-                                  : task.priority == 2
-                                      ? Colors.orange
-                                      : Colors.grey,
-                            ),
+                        splashColor: Colors.yellow,
+                        shape: const StadiumBorder(),
+                        title: Text(
+                          task.title,
+                          style: TextStyle(
+                            decoration: task.isCompleted
+                                ? TextDecoration.lineThrough
+                                : null,
                           ),
-                          IconButton(
-                              onPressed: () => controller.taskCompleted(index),
-                              icon: Icon(
-                                task.isCompleted
-                                    ? Icons.check_box
-                                    : Icons.check_box_outline_blank,
-                                color: AppColors.dark,
-                              )),
-                        ],
-                      ),
-                      // onTap: ,
-                    ),
+                        ),
+                        subtitle: Text(
+                          task.description,
+                          style: TextStyle(
+                            decoration: task.isCompleted
+                                ? TextDecoration.lineThrough
+                                : null,
+                          ),
+                        ),
+                        trailing: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Container(
+                              height: height * 0.04,
+                              width: width * 0.04,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: task.priority == 3
+                                    ? Colors.green
+                                    : task.priority == 2
+                                        ? Colors.orange
+                                        : Colors.grey,
+                              ),
+                            ),
+                            IconButton(
+                                onPressed: () =>
+                                    controller.taskCompleted(index),
+                                icon: Icon(
+                                  task.isCompleted
+                                      ? Icons.check_box
+                                      : Icons.check_box_outline_blank,
+                                  color: AppColors.dark,
+                                )),
+                          ],
+                        ),
+                        onTap: () {
+                          Get.to(
+                              () => TaskEdit(
+                                    title: task.title,
+                                    description: task.description,
+                                    priority: task.priority,
+                                    dueDate: task.dueDate,
+                                    creationDate: task.creationDate,
+                                    index: index,
+                                  ),
+                              transition: Transition.rightToLeft);
+                        }),
                   );
                 }),
           ),

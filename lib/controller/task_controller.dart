@@ -2,6 +2,7 @@
 
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:todo_list_app/main.dart';
 
 import '../models/task.dart';
 
@@ -27,12 +28,15 @@ class TaskController extends GetxController{
   void addTasks(Task task){
     taskBox.add(task);
     taskList.add(task);
+    showTaskCreatedNotification(task.title);
+    scheduleNotificationForTask(task);
   }
   
   // To Update task
   void updateTask(int index,Task task){
     taskBox.putAt(index, task);
     taskList[index] = task;
+    scheduleNotificationForTask(task);
   }
   
   // To Delete task

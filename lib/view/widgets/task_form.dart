@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:omni_datetime_picker/omni_datetime_picker.dart';
 import 'package:todo_list_app/common/constants/app_colors.dart';
 
 import '../../common/widgets/custom_text_field.dart';
@@ -66,15 +67,33 @@ class TaskForm extends StatelessWidget {
                 keyBoardType: TextInputType.datetime,
                 readOnly: true,
                 controller: dueDateController,
-                hintText: 'DueDate',
+                hintText: 'Complete Around?',
                 onTap: () async {
-                  DateTime? pickedDate = await showDatePicker(
-                      context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime.now(),
-                      lastDate: DateTime(2101));
-                  if (pickedDate != null) {
-                    dueDateController.text = pickedDate.toString().substring(0,10);
+                  DateTime? pickedDateAndTime = await showOmniDateTimePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime.now(),
+                    lastDate: DateTime(2101),
+                    is24HourMode: false,
+                    isShowSeconds: false,
+                    minutesInterval: 1,
+                    borderRadius: BorderRadius.circular(15),
+                    transitionBuilder: (context, anim1, anim2, child) {
+                      return FadeTransition(
+                        opacity: anim1.drive(
+                          Tween(
+                            begin: 0,
+                            end: 1,
+                          ),
+                        ),
+                        child: child,
+                      );
+                    },
+                    transitionDuration: const Duration(milliseconds: 500),
+                  );
+                  if (pickedDateAndTime != null) {
+                    dueDateController.text =
+                        pickedDateAndTime.toString();
                   }
                 },
               ),

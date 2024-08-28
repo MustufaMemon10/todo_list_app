@@ -9,7 +9,7 @@ class CustomTextField extends StatelessWidget {
     super.key,
     required this.controller,
     required this.hintText,
-    this.maxLines = 1, this.onTap,  this.readOnly = false, required this.keyBoardType, this.inputFormatter,
+    this.maxLines = 1, this.onTap,  this.readOnly = false, required this.keyBoardType, this.inputFormatter, this.borderColor = AppColors.primary, this.cursorColor = Colors.black,
   });
 
   final TextEditingController controller;
@@ -19,10 +19,14 @@ class CustomTextField extends StatelessWidget {
   final bool readOnly;
   final TextInputType keyBoardType;
   final List<TextInputFormatter>? inputFormatter;
+  final Color borderColor;
+  final Color cursorColor;
+
   @override
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
+      cursorColor: cursorColor,
       keyboardType: keyBoardType,
       onTap: onTap,
       readOnly: readOnly,
@@ -34,15 +38,15 @@ class CustomTextField extends StatelessWidget {
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(4),
               borderSide:
-              const BorderSide(width: 1.5, color: AppColors.secondary)),
+               BorderSide(width: 1.5, color: borderColor)),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(4),
               borderSide:
-              const BorderSide(width: 1.5, color: AppColors.secondary)),
+               BorderSide(width: 1.5, color: borderColor)),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(4),
               borderSide:
-              const BorderSide(width: 1.5, color: AppColors.secondary))),
+               BorderSide(width: 1.5, color: borderColor))),
     );
   }
 }
