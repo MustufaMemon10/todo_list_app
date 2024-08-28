@@ -21,6 +21,7 @@ dependencies:
   flutter_slidable:
   timezone:
   omni_datetime_picker:
+  permission_handler:
 
 
 dev_dependencies:

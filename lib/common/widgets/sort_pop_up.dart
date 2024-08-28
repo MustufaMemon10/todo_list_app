@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:todo_list_app/common/constants/app_colors.dart';
 
 class PopUpMenu extends StatelessWidget {
   const PopUpMenu({super.key, required this.menuList, this.icon});
