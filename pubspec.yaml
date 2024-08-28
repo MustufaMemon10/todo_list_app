@@ -19,7 +19,6 @@ dependencies:
   flutter_local_notifications: 
   intl:
   flutter_slidable:
-  timezone:
   omni_datetime_picker:
   permission_handler:
 
@@ -28,7 +27,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_launcher_icons: "^0.13.1"
-
   flutter_lints: ^3.0.0
   build_runner:
   hive_generator:

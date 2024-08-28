@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:todo_list_app/main.dart';
+import 'package:todo_list_app/services/notification_service.dart';
 import '../models/task.dart';
-import '../services/notification_service.dart';
 
 class TaskController extends GetxController {
   var taskList = <Task>[].obs;
@@ -33,6 +34,10 @@ class TaskController extends GetxController {
     taskList[index] = task;
     scheduleNotificationForTask(task);
   }
+  void updateCompleteTask(int index, Task task) {
+    taskBox.putAt(index, task);
+    taskList[index] = task;
+  }
 
   // To Delete task
   void removeTask(int index) {
@@ -44,7 +49,7 @@ class TaskController extends GetxController {
   void taskCompleted(int index) {
     var task = taskList[index];
     task.isCompleted = !task.isCompleted;
-    updateTask(index, task);
+    updateCompleteTask(index, task);
   }
 
   void sortTask(String criteria) {

@@ -154,7 +154,7 @@ class _TaskEditState extends State<TaskEdit> {
                   initialDate: DateTime.now(),
                   firstDate: DateTime.now(),
                   lastDate: DateTime(2101),
-                  is24HourMode: false,
+                  is24HourMode: true,
                   isShowSeconds: false,
                   minutesInterval: 1,
                   borderRadius: BorderRadius.circular(15),
