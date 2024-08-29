@@ -58,6 +58,7 @@ class _TaskEditState extends State<TaskEdit> {
         DateFormat('d MMMM HH:mm').format(widget.creationDate);
     String formattedDueDate = DateFormat('dd-MM-yyyy').format(widget.dueDate);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: AppColors.primary,
         title: const Text(
