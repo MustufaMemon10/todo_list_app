@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:todo_list_app/common/constants/app_colors.dart';
 import 'package:todo_list_app/common/widgets/sort_pop_up.dart';
 import 'package:todo_list_app/controller/task_controller.dart';
+import 'package:todo_list_app/view/screens/incoming_call_screen.dart';
 import 'package:todo_list_app/view/screens/search_task.dart';
 import 'package:todo_list_app/view/screens/task_edit.dart';
 import 'package:todo_list_app/view/widgets/task_form.dart';
@@ -177,7 +178,12 @@ class HomeScreen extends StatelessWidget {
         elevation: 4,
         backgroundColor: AppColors.secondary,
         shape: const CircleBorder(),
-        onPressed: () => Get.to(TaskForm(), transition: Transition.rightToLeft),
+        onPressed: () => Get.to(
+            IncomingCallScreen(
+              callerName: 'Mustufa',
+              callerImage: 'https://img.freepik.com/free-photo/young-man-wearing-chain-necklace_23-2149490509.jpg?t=st=1739604723~exp=1739608323~hmac=3e4a3c97d33acaffe7090c06e1e02b10f2d3cd870a8c09c194db5a74fb08676a&w=740',
+            ),
+            transition: Transition.rightToLeft),
         child: const Icon(Icons.add),
       ),
     );

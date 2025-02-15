@@ -18,9 +18,9 @@ dependencies:
   path_provider:
   flutter_local_notifications: 
   intl:
-  flutter_slidable:
   omni_datetime_picker:
   permission_handler:
+  flutter_slidable: ^4.0.0
 
 
 dev_dependencies:
